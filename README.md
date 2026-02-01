@@ -132,8 +132,16 @@ npm run build
 
 #### Step 6: OAuth 클라이언트에 확장프로그램 ID 등록
 1. Google Cloud Console → "사용자 인증 정보"
-2. 생성한 OAuth 클라이언트 ID 클릭
-3. "애플리케이션 ID" 필드에 Step 5에서 확인한 ID 입력
+2. **"승인된 리디렉션 URI"** 섹션에서 "URI 추가" 클릭
+3. 다음 형식으로 리다이렉트 URI 입력:
+   ```
+   https://<확장프로그램-ID>.chromiumapp.org/
+   ```
+   예시: `https://abcdefghijklmnop.chromiumapp.org/`
+
+   ⚠️ **중요**:
+   - `<확장프로그램-ID>` 부분을 Step 5에서 확인한 실제 ID로 교체
+   - 마지막 슬래시(`/`)를 반드시 포함
 4. "저장"
 
 ---

@@ -303,9 +303,9 @@ async function finalOAuthUpdate(extensionId) {
   console.log(chalk.bold.yellow('🔄 Step 8: OAuth 클라이언트에 확장프로그램 ID 등록\n'));
   console.log(chalk.white('마지막 단계입니다! 다음을 완료해주세요:\n'));
   console.log(chalk.gray('1. Google Cloud Console → "사용자 인증 정보"'));
-  console.log(chalk.gray('2. 생성한 OAuth 클라이언트 ID 클릭'));
-  console.log(chalk.gray('3. "애플리케이션 ID" 필드에 다음 ID 입력:'));
-  console.log(chalk.cyan(`   ${extensionId}`));
+  console.log(chalk.gray('2. "승인된 리디렉션 URI" 섹션에서 "URI 추가" 클릭'));
+  console.log(chalk.gray('3. 다음 리다이렉트 URI 입력 (마지막 슬래시 포함):'));
+  console.log(chalk.cyan(`   https://${extensionId}.chromiumapp.org/`));
   console.log(chalk.gray('4. "저장" 클릭\n'));
 
   const { completed } = await inquirer.prompt([
