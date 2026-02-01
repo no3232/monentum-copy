@@ -8,10 +8,9 @@ interface TaskItemProps {
   task: Task;
   onToggle: (taskId: string) => void;
   onDelete: (taskId: string) => void;
-  onPlayYoutube?: (videoId: string) => void;
 }
 
-export default memo(function TaskItem({ task, onToggle, onDelete, onPlayYoutube }: TaskItemProps) {
+export default memo(function TaskItem({ task, onToggle, onDelete }: TaskItemProps) {
   const isCompleted = task.status === 'completed';
   const parsedUrls = parseNotesForUrls(task.notes);
 
@@ -39,13 +38,13 @@ export default memo(function TaskItem({ task, onToggle, onDelete, onPlayYoutube 
       {/* URL 액션 버튼들 - 항상 공간 확보 */}
       <div className="flex items-center gap-1 shrink-0">
         {parsedUrls.map((parsedUrl, index) => {
-          if (parsedUrl.type === 'youtube' && parsedUrl.videoId && onPlayYoutube) {
+          if (parsedUrl.type === 'youtube' && parsedUrl.videoId) {
             return (
               <button
                 key={index}
                 onClick={(e) => {
                   e.stopPropagation();
-                  onPlayYoutube(parsedUrl.videoId!);
+                  window.open(parsedUrl.url, '_blank', 'noopener,noreferrer');
                 }}
                 className="p-1 hover:bg-red-500/20 rounded transition-colors cursor-pointer"
                 title="YouTube 재생"

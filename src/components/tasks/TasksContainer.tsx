@@ -8,11 +8,8 @@ import TaskForm from './TaskForm';
 import TaskList from './TaskList';
 import LoginPrompt from '../auth/LoginPrompt';
 
-interface TasksContainerProps {
-  onPlayYoutube?: (videoId: string) => void;
-}
 
-export default memo(function TasksContainer({ onPlayYoutube }: TasksContainerProps) {
+export default memo(function TasksContainer() {
   const { isAuthenticated, isLoading: authLoading, login, logout } = useGoogleAuth();
   const { tasks, isLoading: tasksLoading, addTask, toggleTask, deleteTask } = useGoogleTasks(isAuthenticated);
   
@@ -60,7 +57,6 @@ export default memo(function TasksContainer({ onPlayYoutube }: TasksContainerPro
             isFormExpanded={isFormExpanded}
             onToggle={toggleTask}
             onDelete={deleteTask}
-            onPlayYoutube={onPlayYoutube}
           />
         </div>
       </div>

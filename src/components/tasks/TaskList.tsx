@@ -9,7 +9,6 @@ interface TaskListProps {
   isFormExpanded?: boolean;
   onToggle: (taskId: string) => void;
   onDelete: (taskId: string) => void;
-  onPlayYoutube?: (videoId: string) => void;
 }
 
 export default memo(function TaskList({
@@ -18,7 +17,6 @@ export default memo(function TaskList({
   isFormExpanded = false,
   onToggle,
   onDelete,
-  onPlayYoutube,
 }: TaskListProps) {
   return (
     <div
@@ -40,7 +38,6 @@ export default memo(function TaskList({
             task={task}
             onToggle={onToggle}
             onDelete={onDelete}
-            onPlayYoutube={onPlayYoutube}
           />
         ))
       )}

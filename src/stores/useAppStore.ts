@@ -14,11 +14,6 @@ interface AppState {
   userProfile: UserProfile | null;
   setUserProfile: (profile: UserProfile | null) => void;
   
-  // YouTube Modal
-  activeVideoId: string | null;
-  openYoutubeModal: (videoId: string) => void;
-  closeYoutubeModal: () => void;
-  
   // Tasks Panel Collapsed
   isTasksCollapsed: boolean;
   setTasksCollapsed: (collapsed: boolean) => void;
@@ -37,11 +32,6 @@ export const useAppStore = create<AppState>((set) => ({
   // User Profile
   userProfile: null,
   setUserProfile: (userProfile) => set({ userProfile }),
-  
-  // YouTube Modal
-  activeVideoId: null,
-  openYoutubeModal: (videoId) => set({ activeVideoId: videoId }),
-  closeYoutubeModal: () => set({ activeVideoId: null }),
   
   // Tasks Panel Collapsed
   isTasksCollapsed: false,

@@ -1,20 +1,16 @@
 import { useCallback, useEffect } from 'react';
-import Background from './components/Background';
-import Clock from './components/Clock';
-import Tasks from './components/Tasks';
-import YouTubeModal from './components/YouTubeModal';
-import GoalButtons from './components/GoalButtons';
-import { useTimeTrigger } from './hooks/useTimeTrigger';
-import { parseNotesForUrls } from './utils/urlParser';
-import { useAppStore } from './stores/useAppStore';
-import type { Task } from './types';
+import Background from '@/components/Background';
+import Clock from '@/components/Clock';
+import Tasks from '@/components/Tasks';
+import GoalButtons from '@/components/GoalButtons';
+import { useTimeTrigger } from '@/hooks/useTimeTrigger';
+import { parseNotesForUrls } from '@/utils/urlParser';
+import { useAppStore } from '@/stores/useAppStore';
+import type { Task } from '@/types';
 
 function App() {
   const tasks = useAppStore((state) => state.tasks);
   const userProfile = useAppStore((state) => state.userProfile);
-  const activeVideoId = useAppStore((state) => state.activeVideoId);
-  const openYoutubeModal = useAppStore((state) => state.openYoutubeModal);
-  const closeYoutubeModal = useAppStore((state) => state.closeYoutubeModal);
   const setTriggeredTasks = useAppStore((state) => state.setTriggeredTasks);
 
   // 시간 트리거로 활성화된 태스크들
@@ -32,12 +28,8 @@ function App() {
 
     if (!firstUrl) return;
 
-    if (firstUrl.type === 'youtube' && firstUrl.videoId) {
-      openYoutubeModal(firstUrl.videoId);
-    } else if (firstUrl.type === 'external' || firstUrl.type === 'app') {
-      window.open(firstUrl.url, '_blank', 'noopener,noreferrer');
-    }
-  }, [openYoutubeModal]);
+    window.open(firstUrl.url, '_blank', 'noopener,noreferrer');
+  }, []);
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -50,11 +42,7 @@ function App() {
         </div>
       </div>
 
-      <Tasks onPlayYoutube={openYoutubeModal} />
-
-      {activeVideoId && (
-        <YouTubeModal videoId={activeVideoId} onClose={closeYoutubeModal} />
-      )}
+      <Tasks />
     </div>
   );
 }
