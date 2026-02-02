@@ -17,7 +17,8 @@ const isChromeExtension = typeof chrome !== "undefined" && chrome.identity;
  */
 const getAuthToken = (interactive: boolean): Promise<string> => {
   return new Promise((resolve, reject) => {
-    chrome.identity.getAuthToken({ interactive }, (token) => {
+    chrome.identity.getAuthToken({ interactive }, (result) => {
+      const token = typeof result === 'string' ? result : result?.token;
       if (chrome.runtime.lastError || !token) {
         reject(
           new Error(
